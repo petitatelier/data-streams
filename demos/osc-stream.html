@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>‹data-streams/osc-stream› demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="elements/streaming-element.js"></script>
+  <link rel="stylesheet" href="demo-streams.css">
+  <style>
+    .fullbleed { margin: 0; height: 100vh }
+    .vflex { display: flex; flex-direction: row }
+    .vfill { flex-grow: 1 }
+  </style>
+</head>
+<body class="unresolved vflex fullbleed">
+  <noscript>Please enable JavaScript to view this website.</noscript>
+
+  <header>
+    <a href="index.html">Catalog</a>
+    <span> › data-streams/osc-stream</span>
+  </header>
+
+  <main class="vflex vfill">
+    <streaming-element id="target"></streaming-element>
+  </main>
+
+  <script src="../node_modules/osc-js/lib/osc.min.js"></script>
+  <script type="module">
+    addEventListener( "load", () => document.body.classList.remove( "unresolved"));
+    const streamingElement = document.querySelector( "#target");
+
+    import { OSCStream , OSCMessageHTMLFormatter } from "../node_modules/@petitatelier/osc-stream";
+    const oscStream = new OSCStream({ host: "localhost", port: 8080 });
+    console.log( oscStream);
+
+    oscStream.readable
+      .pipeThrough( OSCMessageHTMLFormatter)
+      .pipeTo( streamingElement.writable)
+      .then(() => console.log( "All data successfully written!"))
+      .catch( err => console.error( "Something went wrong!", err));
+
+  </script>
+</body>
+</html>

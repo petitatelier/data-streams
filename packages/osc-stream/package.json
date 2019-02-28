@@ -1,0 +1,30 @@
+{
+  "name": "@petitatelier/osc-stream",
+  "version": "0.0.0",
+  "description": "A readable stream of OSC Messages, read and received from an underlying Websocket",
+  "author": "Olivier Lange",
+  "license": "BSD-3-Clause",
+  "main": "osc-stream.js",
+  "scripts": {},
+  "dependencies": {
+    "osc-js": "^2.0.2",
+    "ws": "^6.1.4"
+  },
+  "keywords": [
+    "osc",
+    "webstream",
+    "streaming-data",
+    "streams"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petitatelier/data-streams.git"
+  },
+  "bugs": {
+    "url": "https://github.com/petitatelier/data-streams/issues"
+  },
+  "homepage": "https://github.com/petitatelier/data-streams/tree/master/packages/osc-stream#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}
