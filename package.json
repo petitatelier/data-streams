@@ -1,0 +1,19 @@
+{
+  "name": "@petitatelier/data-streams",
+  "private": true,
+  "description": "A collection of readable data streams, to play with in visualization experiments",
+  "author": "",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "bootstrap": "npm install && ./scripts/bootstrap.sh",
+    "publish": "npx lerna publish"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.0"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petitatelier/data-streams.git"
+  }
+}
