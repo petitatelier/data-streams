@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>‹data-streams/osc-stream› demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="module" src="elements/streaming-element.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="stylesheet" href="demo-streams.css">
   <style>
     .fullbleed { margin: 0; height: 100vh }
@@ -21,24 +21,29 @@
   </header>
 
   <main class="vflex vfill">
-    <streaming-element id="target"></streaming-element>
+    <streaming-element id="target">
+      <h3>OSC Messages</h3>
+    </streaming-element>
   </main>
 
   <script src="../node_modules/osc-js/lib/osc.min.js"></script>
+  <script type="module" src="./elements/streaming-element.js"></script>
   <script type="module">
-    addEventListener( "load", () => document.body.classList.remove( "unresolved"));
-    const streamingElement = document.querySelector( "#target");
+    import { OSCStream, OSCMessageTextFormatter } from "../node_modules/@petitatelier/osc-stream";
 
-    import { OSCStream , OSCMessageHTMLFormatter } from "../node_modules/@petitatelier/osc-stream";
-    const oscStream = new OSCStream({ host: "localhost", port: 8080 });
-    console.log( oscStream);
+    addEventListener( "load", () => {
+      document.body.classList.remove( "unresolved")
+      const streamingElement = document.querySelector( "#target");
 
-    oscStream.readable
-      .pipeThrough( OSCMessageHTMLFormatter)
-      .pipeTo( streamingElement.writable)
-      .then(() => console.log( "All data successfully written!"))
-      .catch( err => console.error( "Something went wrong!", err));
+      const oscStream = new OSCStream({ host: "localhost", port: 8080 });
+      console.log( oscStream);
 
+      oscStream.readable
+        .pipeThrough( OSCMessageTextFormatter)
+        .pipeTo( streamingElement.writable)
+        .then(() => console.log( "All data successfully written!"))
+        .catch( err => console.error( "Something went wrong!", err));
+    });
   </script>
 </body>
 </html>

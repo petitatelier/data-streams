@@ -19,8 +19,8 @@ function makeMapperTransformStream( mapperFn) {
   });
 }
 
-export const OSCMessageHTMLFormatter = makeMapperTransformStream(( message) => {
-  return `OSC Message [${message.address}]: ${message.args}<br/>`;
+export const OSCMessageTextFormatter = makeMapperTransformStream(( message) => {
+  return `OSC Message [${message.address}]: ${message.args}`;
 });
 
 export class OSCStream {
