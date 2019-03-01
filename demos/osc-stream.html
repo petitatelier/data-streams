@@ -21,7 +21,7 @@
   </header>
 
   <main class="vflex vfill">
-    <streaming-element id="target">
+    <streaming-element id="target" take="30">
       <h3>OSC Messages</h3>
     </streaming-element>
   </main>
@@ -35,9 +35,7 @@
       document.body.classList.remove( "unresolved")
       const streamingElement = document.querySelector( "#target");
 
-      const oscStream = new OSCStream({ host: "localhost", port: 8080 });
-      console.log( oscStream);
-
+      const oscStream = new OSCStream({ host: window.location.hostname, port: 8080 });
       oscStream.readable
         .pipeThrough( OSCMessageTextFormatter)
         .pipeTo( streamingElement.writable)
