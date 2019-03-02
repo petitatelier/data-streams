@@ -37,13 +37,33 @@ const oscBridgeConfig = {
   }
 }
 
+function getLocalHostIPAddresses() {
+  const os = require( "os"),
+        interfaces = os.networkInterfaces(),
+        ipAddresses = [];
+
+  for( let deviceName in interfaces) {
+    const addresses = interfaces[ deviceName];
+    for( let i = 0; i < addresses.length; i++) {
+      const addressInfo = addresses[ i];
+      if( addressInfo.family === "IPv4" && !addressInfo.internal) {
+        ipAddresses.push( `${deviceName}: \`${addressInfo.address}\``);
+      }
+    }
+  }
+  return ipAddresses;
+}
+
 function showConfig( config) {
+  const ipAddresses = getLocalHostIPAddresses();
   console.info(
     `Bridging OSC over Web Socket to/from \`ws://${config.wsServer.host}:${config.wsServer.port}\``);
   console.log(
     `Listening for OSC over UDP on \`${config.udpServer.host}:${config.udpServer.port}\``);
   console.info(
     `Broadcasting OSC over UDP to \`${config.udpClient.host}:${config.udpClient.port}\``);
+  console.info(
+    `Local host reachable at: [ ${ipAddresses.join( ", ")} ]`);
 }
 
 function start() {
