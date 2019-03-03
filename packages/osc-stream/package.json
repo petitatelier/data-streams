@@ -1,6 +1,6 @@
 {
   "name": "@petitatelier/osc-stream",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A readable stream of OSC Messages, read and received from an underlying Websocket",
   "author": "Olivier Lange",
   "license": "BSD-3-Clause",
