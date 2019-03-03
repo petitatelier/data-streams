@@ -15,13 +15,13 @@
       "host": "0.0.0.0",
       "port": "8081"
     },
-    "osc-relay": {
+    "osc-bridge": {
       "udp-server": {
         "host": "0.0.0.0",
         "port": "7400"
       },
       "udp-client": {
-        "host": "192.168.1.26",
+        "host": "192.168.178.29",
         "port": "7500"
       },
       "ws-server": {
@@ -35,7 +35,8 @@
     "lerna": "^3.13.0",
     "lit-element": "^2.0.1",
     "polyserve": "^0.27.15",
-    "@petitatelier/osc-bridge": "latest"
+    "@petitatelier/osc-bridge": "latest",
+    "osc-js": "2.0.2"
   },
   "keywords": [],
   "repository": {

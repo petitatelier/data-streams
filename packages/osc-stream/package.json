@@ -4,7 +4,7 @@
   "description": "A readable stream of OSC Messages, read and received from an underlying Websocket",
   "author": "Olivier Lange",
   "license": "BSD-3-Clause",
-  "browser": "osc-stream.js",
+  "main": "osc-stream.js",
   "scripts": {},
   "dependencies": {
     "osc-js": "2.0.2",
