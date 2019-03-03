@@ -4,9 +4,7 @@ A [readable-](https://streams.spec.whatwg.org/#rs-model) and [writable stream](h
 
 ## Prequisites
 
-Requires an _OSC bridge server_ running on your local network, to enable bi-directional messaging between the `OSCStream` class instance and a remote OSC controller.
-
-You can use the [@petitatelier/osc-bridge](https://github.com/petitatelier/data-streams/tree/master/packages/osc-bridge) command-line utility to start one. See _demo_ instructions hereafter.
+Requires an _OSC bridge server_ running on your local network, to enable bi-directional messaging between the `OSCStream` class instance and a remote OSC controller. You can use the [@petitatelier/osc-bridge](https://github.com/petitatelier/data-streams/tree/master/packages/osc-bridge) command-line utility to start one. See _demo_ instructions hereafter.
 
 ## Usage
 
@@ -30,7 +28,7 @@ You can use the [@petitatelier/osc-bridge](https://github.com/petitatelier/data-
 ## Demo
 
 <img height="250" title="`OSCStream` class demo · Screencopy"
-  src="../../demos/images/osc-stream-demo-screencopy.png" >
+  src="https://raw.githubusercontent.com/petitatelier/data-streams/master/demos/images/osc-stream-demo-screencopy.png" >
 
 Run following command and navigate to http://127.0.0.1:8081/demos/osc-stream.html:
 
