@@ -1,3 +1,16 @@
+/**
+ * OSCStream
+ *
+ * Usage:
+ *
+ *    const oscStream = new OSCStream({ host: window.location.hostname, port: 8080 });
+ *    oscStream.readable
+ *      .pipeThrough( OSCMessageTextFormatter)
+ *      .pipeTo( streamingElement.writable)
+ *      .then(() => console.log( "All data successfully written!"))
+ *      .catch(( err) => console.error( "Something went wrong!", err));
+ */
+
 // import { OSC } from "osc-js";
 // @see [Importing OSC-js from ES module does not work](https://github.com/adzialocha/osc-js/issues/37)
 //
@@ -6,36 +19,29 @@
 
 export const Default = Object.freeze({
   osc: {
-    // Connect by default to ws://localhost:8080
+    // Connect by default to ws://0.0.0.0:8080; in the context of the
+    // browser, you might want to connect to `window.location.hostname`
     options: { host: "0.0.0.0", port: "8080" }
   }
 });
 
-function makeMapperTransformStream( mapperFn) {
-  return new TransformStream({
-    transform( chunk, controller) {
-      controller.enqueue( mapperFn( chunk));
-    }
-  });
-}
-
-export const OSCMessageTextFormatter = makeMapperTransformStream(( message) => {
-  return `OSC Message [${message.address}]: ${message.args}`;
-});
-
 export class OSCStream {
   constructor( options) {
-    const { host, port } = Object.assign( {}, Default.osc.options, options),
-          plugin = new self.OSC.WebsocketClientPlugin(),
-          that = this;
+    const plugin = new self.OSC.WebsocketClientPlugin();
 
     this.osc = new self.OSC({ plugin });
-    this.host = host;
-    this.port = port;
+    this.options = Object.assign( {}, Default.osc.options, options);
 
-    this.readable = new ReadableStream({
+    this.readable = new ReadableStream( new OSCWebSocketSource( this.osc, this.options));
+    // TODO: this.writable = new WritableStream( new OSCWebSocketSink( this.osc, this.options));
+  }
+}
+
+class OSCWebSocketSource {
+  constructor( osc, options) {
+    return {
       start( controller) {
-        const { osc, host, port } = that;
+        const { host, port } = options;
 
         // Open Web Socket
         osc.open({ host, port });
@@ -65,6 +71,20 @@ export class OSCStream {
         console.debug( "Stream cancelled for reason:", reason);
         osc.close();
       }
-    });
+    };
   }
+}
+
+export const OSCMessageTextFormatter = makeMapperTransformStream(
+  (message) => {
+    return `OSC Message [${message.address}]: ${message.args}`;
+  }
+);
+
+function makeMapperTransformStream( mapperFn) {
+  return new TransformStream({
+    transform( chunk, controller) {
+      controller.enqueue( mapperFn( chunk));
+    }
+  });
 }
