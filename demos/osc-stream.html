@@ -23,6 +23,7 @@
   <main class="vflex vfill">
     <streaming-element id="target" take="30">
       <h3>OSC Messages</h3>
+      <button id="sendMessage">Send message</button>
     </streaming-element>
   </main>
 
@@ -32,8 +33,9 @@
     import { OSCStream, OSCMessageTextFormatter } from "../node_modules/@petitatelier/osc-stream";
 
     addEventListener( "load", () => {
-      document.body.classList.remove( "unresolved")
-      const streamingElement = document.querySelector( "#target");
+      document.body.classList.remove( "unresolved");
+      const streamingElement = document.querySelector( "#target"),
+            button = document.querySelector( "#sendMessage");
 
       const oscStream = new OSCStream({ host: window.location.hostname, port: 8080 });
       oscStream.readable
@@ -41,6 +43,12 @@
         .pipeTo( streamingElement.writable)
         .then(() => console.log( "All data successfully written!"))
         .catch( err => console.error( "Something went wrong!", err));
+
+      const oscWriter = oscStream.writable.getWriter();
+      button.addEventListener( "click", async (elt) => {
+        const message = new self.OSC.Message( "/ping", `Messages received: ${streamingElement._messageCount}`);
+        await oscWriter.write( message);
+      });
     });
   </script>
 </body>
