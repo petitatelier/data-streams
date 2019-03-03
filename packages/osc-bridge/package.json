@@ -1,0 +1,37 @@
+{
+  "name": "@petitatelier/osc-bridge",
+  "version": "0.1.2",
+  "description": "OSC bridge server, enabling bi-directional OSC messaging between Websocket <-> UDP",
+  "author": "Olivier Lange",
+  "license": "BSD-3-Clause",
+  "main": "cli.js",
+  "bin": {
+    "osc-bridge": "cli.js"
+  },
+  "scripts": {},
+  "dependencies": {
+    "osc-js": "2.0.2",
+    "ws": "6.1.4"
+  },
+  "keywords": [
+    "cli",
+    "osc",
+    "bridge",
+    "relay",
+    "udp",
+    "datagram",
+    "ws",
+    "websocket"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petitatelier/data-streams.git"
+  },
+  "bugs": {
+    "url": "https://github.com/petitatelier/data-streams/issues"
+  },
+  "homepage": "https://github.com/petitatelier/data-streams/tree/master/packages/osc-bridge#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}
