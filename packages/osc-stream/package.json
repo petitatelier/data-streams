@@ -7,8 +7,8 @@
   "browser": "osc-stream.js",
   "scripts": {},
   "dependencies": {
-    "osc-js": "^2.0.2",
-    "ws": "^6.1.4"
+    "osc-js": "2.0.2",
+    "ws": "6.1.4"
   },
   "keywords": [
     "osc",
