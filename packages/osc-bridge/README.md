@@ -10,6 +10,7 @@ would only send/receive UDP datagrams.
 ## Setup
 
     $ npm install
+    $ npm link
 
 ## Usage
 

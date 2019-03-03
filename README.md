@@ -1,12 +1,12 @@
 # Data streams
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![npm latest version](https://img.shields.io/npm/v/@petitatelier/data-streams.svg)](https://www.npmjs.com/package/@petitatelier/data-streams)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![npm latest version](https://img.shields.io/npm/v/@petitatelier/osc-stream.svg)](https://www.npmjs.com/package/@petitatelier/osc-stream)
 
-A collection of readable data streams, to play with in visualization experiments.
+A collection of readable and/or writable data streams, to play with in visualization experiments.
 
 ## Status
 
-Work-in-progress.
+Work-in-progress / Alpha releases.
 
 ## Setup
 
@@ -15,3 +15,9 @@ Work-in-progress.
 ## Publish to NPM
 
     $ npm run publish
+
+## Demos
+
+Run the following command and navigate to http://localhost:8081/demos/:
+
+    $ npm run dev:osc

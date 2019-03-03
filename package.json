@@ -7,7 +7,7 @@
   "scripts": {
     "bootstrap": "npm install && ./scripts/bootstrap.sh",
     "dev": "polyserve --npm --module-resolution=node --open-path=demos/index.html --hostname $npm_package_config_http_server_host --port $npm_package_config_http_server_port",
-    "dev:osc": "node scripts/osc-relay.js & npm run dev && fg",
+    "dev:osc": "node_modules/.bin/osc-bridge & npm run dev && fg",
     "publish": "npx lerna publish"
   },
   "config": {
@@ -34,7 +34,8 @@
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "lerna": "^3.13.0",
     "lit-element": "^2.0.1",
-    "polyserve": "^0.27.15"
+    "polyserve": "^0.27.15",
+    "@petitatelier/osc-bridge": "latest"
   },
   "keywords": [],
   "repository": {
