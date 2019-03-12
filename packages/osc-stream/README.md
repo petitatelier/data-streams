@@ -10,7 +10,7 @@ Requires an _OSC bridge server_ running on your local network, to enable bi-dire
 
 ```html
   <script type="module">
-    import { OSCStream , OSCMessageHTMLFormatter } from "../node_modules/@petitatelier/osc-stream";
+    import { OSCStream , OSCMessageHTMLFormatter } from "@petitatelier/osc-stream";
     const oscStream = new OSCStream({ host: "0.0.0.0", port: 8080 });
 
     oscStream.readable
@@ -33,14 +33,71 @@ Run following command and navigate to http://127.0.0.1:8081/demos/osc-stream.htm
 
     $ npm run dev:osc
 
-The command will start an _OSC bridge server_, along with the local dev HTTP server,
-enabling bi-directional messaging between a remote OSC controller and the `OSCStream`
-class instance of the demo.
+## Prerequisite
+
+### OSC bridge server
+
+The `npm run dev:osc` command will start an _OSC bridge server_, along with the local
+dev HTTP server, enabling bi-directional messaging between a _remote OSC controller_
+and the `OSCStream` class instance of the demo.
 
 Before starting the _OSC bridge server_, you might want to tweak its configuration;
 see the `config` section of the [package.json](../../package.json) at the root of
 this monorepo.
 
-You will also need to configure your OSC controller app, to send its outgoing
-messages to the _OSC bridge server_. Use the IP address of the network adapter
-listed by the _OSC bridge server_ upon start.
+```
+{
+  …
+  "config": {
+    "http-server": {
+      "host": "0.0.0.0",
+      "port": "8081"
+    },
+    "osc-bridge": {
+      "udp-server": {
+        "host": "0.0.0.0",
+        "port": "7400"
+      },
+      "udp-client": {
+        "host": "192.168.178.29",
+        "port": "7500"
+      },
+      "ws-server": {
+        "host": "0.0.0.0",
+        "port": "8080"
+      }
+    }
+  },
+  …
+}
+```
+
+### OSC remote controller
+
+You will also need to configure your remote _OSC controller app_, to send its
+outgoing messages to the _OSC bridge server_.
+
+Use the IP address of the network adapter listed by the _OSC bridge server_
+upon start. For instance, if you get following output, your computer and
+the _OSC bridge server_ will be reachable at IP `192.168.178.47`:
+
+```
+$ npm run dev:osc
+
+> @petitatelier/data-streams@ dev:osc …
+> osc-bridge & npm run dev && fg
+
+OSC Websocket <-> UDP bridge server
+Bridging OSC over Web Socket to/from `ws://0.0.0.0:8080`
+Listening for OSC over UDP on `0.0.0.0:7400`
+Broadcasting OSC over UDP to `192.168.178.29:7500`
+Local host reachable at: [ en0: `192.168.178.47` ]
+
+…
+```
+
+And if you were using the TouchOSC _remote controller app_, you would
+consequently configure it as following:
+
+<img height="400" alt="TouchOSC configuration · Screencopy"
+  src="../../demos/images/touchosc-config.png">
