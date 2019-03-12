@@ -1,6 +1,6 @@
 {
   "name": "@petitatelier/osc-bridge",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "OSC bridge server, enabling bi-directional OSC messaging between Websocket <-> UDP",
   "author": "Olivier Lange",
   "license": "BSD-3-Clause",
