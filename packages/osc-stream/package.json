@@ -4,12 +4,22 @@
   "description": "A readable stream of OSC Messages, read and received from an underlying Websocket",
   "author": "Olivier Lange",
   "license": "BSD-3-Clause",
-  "main": "osc-stream.js",
-  "module": "osc-stream.js",
-  "scripts": {},
+  "main": "dist/osc-stream.js",
+  "module": "dist/osc-stream.es.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && rollup -c",
+    "clean": "rm -rf dist/"
+  },
   "dependencies": {
     "osc-js": "2.0.3",
     "ws": "6.2.0"
+  },
+  "devDependencies": {
+    "rollup": "^1.6.0",
+    "rollup-plugin-cleanup": "^3.1.1"
   },
   "keywords": [
     "osc",

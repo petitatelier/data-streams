@@ -1,7 +1,8 @@
+import "osc-js";
+
 // Library `osc-js` can only be imported in _global scope_ for now
 // (not in _module scope_) and must be referenced with `self.OSC`.
 // @see discussion in https://github.com/adzialocha/osc-js/issues/37
-import "osc-js";
 
 export const Default = Object.freeze({
   osc: {
