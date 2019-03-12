@@ -96,7 +96,9 @@ Local host reachable at: [ en0: `192.168.178.47` ]
 ```
 
 And if you were using the popular [TouchOSC](https://hexler.net/software/touchosc)
-_remote OSC controller app_, you would consequently configure it as following:
+_remote OSC controller app_, you would consequently configure its _Host_ and
+_Port (outgoing)_ fields with IP `192.168.178.47` and port `7400`, as shown
+in screencopy hereafter:
 
 <img height="400" alt="TouchOSC configuration · Screencopy"
   src="../../demos/images/touchosc-config.png">

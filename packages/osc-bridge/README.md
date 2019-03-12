@@ -76,13 +76,18 @@ Local host reachable at: [ en0: `192.168.178.47` ]
 ```
 
 If you were using the popular [TouchOSC](https://hexler.net/software/touchosc)
-_remote OSC controller app_, you would consequently configure it as following:
+_remote OSC controller app_, you would consequently configure its _Host_ and
+_Port (outgoing)_ fields with IP `192.168.178.47` and port `7400`, as shown
+in screencopy hereafter:
 
 <img height="400" alt="TouchOSC configuration · Screencopy"
   src="../../demos/images/touchosc-config.png">
 
-And in your `package.json`, you would adjust the `udp-client` host field
-to the Local IP address `192.168.178.29` shown by TouchOSC:
+Back to your `package.json`, to forward OSC messages from the bridge server
+to the remote controller, you would adjust the `udp-client.host` field to
+the _Local IP address_ `192.168.178.29` shown by TouchOSC; and the
+`udp-client.port` field to the value shown in the _Port (incoming)_ field
+of TouchOSC:
 
 ```
 {
