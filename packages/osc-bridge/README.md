@@ -71,7 +71,6 @@ Bridging OSC over Web Socket to/from `ws://0.0.0.0:8080`
 Listening for OSC over UDP on `0.0.0.0:7400`
 Broadcasting OSC over UDP to `192.168.178.29:7500`
 Local host reachable at: [ en0: `192.168.178.47` ]
-
 …
 ```
 
@@ -81,7 +80,7 @@ _Port (outgoing)_ fields with IP `192.168.178.47` and port `7400`, as shown
 in screencopy hereafter:
 
 <img height="400" alt="TouchOSC configuration · Screencopy"
-  src="../../demos/images/touchosc-config.png">
+  src="https://raw.githubusercontent.com/petitatelier/data-streams/master/demos/images/touchosc-config.png">
 
 Back to your `package.json`, to forward OSC messages from the bridge server
 to the remote controller, you would adjust the `udp-client.host` field to

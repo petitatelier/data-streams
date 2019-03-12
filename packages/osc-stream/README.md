@@ -26,7 +26,7 @@ Requires an _OSC bridge server_ running on your local network, to enable bi-dire
 
 ## Demo
 
-<img height="250" title="`OSCStream` class demo · Screencopy"
+<img height="400" title="`OSCStream` class demo · Screencopy"
   src="https://raw.githubusercontent.com/petitatelier/data-streams/master/demos/images/osc-stream-demo-screencopy.png" >
 
 Run following command and navigate to http://127.0.0.1:8081/demos/osc-stream.html:
@@ -101,4 +101,4 @@ _Port (outgoing)_ fields with IP `192.168.178.47` and port `7400`, as shown
 in screencopy hereafter:
 
 <img height="400" alt="TouchOSC configuration · Screencopy"
-  src="../../demos/images/touchosc-config.png">
+  src="https://raw.githubusercontent.com/petitatelier/data-streams/master/demos/images/touchosc-config.png">
