@@ -1,8 +1,8 @@
 {
   "name": "@petitatelier/data-streams",
   "private": true,
-  "description": "A collection of readable data streams, to play with in visualization experiments",
-  "author": "",
+  "description": "A collection of readable and/or writable data streams, to play with in visualization experiments",
+  "author": "Olivier Lange",
   "license": "BSD-3-Clause",
   "scripts": {
     "bootstrap": "npm install && ./scripts/bootstrap.sh",
@@ -31,14 +31,19 @@
     }
   },
   "devDependencies": {
+    "@petitatelier/osc-bridge": "latest",
     "@webcomponents/webcomponentsjs": "^2.2.7",
+    "osc-js": "2.0.3",
     "lerna": "^3.13.0",
     "lit-element": "^2.0.1",
-    "polyserve": "^0.27.15",
-    "@petitatelier/osc-bridge": "latest",
-    "osc-js": "2.0.2"
+    "polyserve": "^0.27.15"
   },
-  "keywords": [],
+  "keywords": [
+    "webstream",
+    "data-stream",
+    "streaming-data",
+    "stream"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/petitatelier/data-streams.git"

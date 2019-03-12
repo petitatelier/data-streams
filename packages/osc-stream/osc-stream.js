@@ -1,5 +1,7 @@
-// Does not work; see workaround in prerequisite section hereafter
-// import { OSC } from "osc-js";
+// Library `osc-js` can only be imported in _global scope_ for now
+// (not in _module scope_) and must be referenced with `self.OSC`.
+// @see discussion in https://github.com/adzialocha/osc-js/issues/37
+import "osc-js";
 
 export const Default = Object.freeze({
   osc: {
@@ -14,24 +16,13 @@ export const Default = Object.freeze({
  *
  * Usage:
  *
- *    import { OSCStream } from "../node_modules/@petitatelier/osc-stream";
+ *     import { OSCStream } from "../node_modules/@petitatelier/osc-stream";
  *
- *    const oscStream = new OSCStream({ host: window.location.hostname, port: 8080 });
- *    oscStream.readable
- *      .pipeTo( streamingElement.writable)
- *      .then(() => console.log( "All data successfully written!"))
- *      .catch(( err) => console.error( "Something went wrong!", err));
- *
- * Prerequisite:
- *
- * The underlying `osc-js` library need to be installed in global scope
- * before using the `OSCStream` class. Add following script element in
- * the HTML that uses this `osc-stream` package (sigh); see [demo](../../demos/osc-stream.html):
- *
- *     <script src="../node_modules/osc-js/lib/osc.min.js"></script>
- *
- * The `osc-js` library currently cannot be imported as a module; see
- * [issue 1](https://github.com/petitatelier/data-streams/issues/1).
+ *     const oscStream = new OSCStream({ host: window.location.hostname, port: 8080 });
+ *     oscStream.readable
+ *       .pipeTo( streamingElement.writable)
+ *       .then(() => console.log( "All data successfully written!"))
+ *       .catch(( err) => console.error( "Something went wrong!", err));
  */
 export class OSCStream {
   constructor( options) {

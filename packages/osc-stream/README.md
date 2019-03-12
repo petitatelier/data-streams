@@ -9,7 +9,6 @@ Requires an _OSC bridge server_ running on your local network, to enable bi-dire
 ## Usage
 
 ```html
-  <script src="../node_modules/osc-js/lib/osc.min.js"></script>
   <script type="module">
     import { OSCStream , OSCMessageHTMLFormatter } from "../node_modules/@petitatelier/osc-stream";
     const oscStream = new OSCStream({ host: "0.0.0.0", port: 8080 });
@@ -45,11 +44,3 @@ this monorepo.
 You will also need to configure your OSC controller app, to send its outgoing
 messages to the _OSC bridge server_. Use the IP address of the network adapter
 listed by the _OSC bridge server_ upon start.
-
-## Known limitations
-
-The underlying `osc-js` library used to handle OSC Messages currently cannot be
-imported as a module. You'll need to install it in global scope before using
-`OSCStream` from this package (hence the `<script src="../node_modules/osc-js/lib/osc.min.js">`
-element in the _usage_ instructions hereabove). Hopefully it will evolve; I will
-track progress in [issue #1](https://github.com/petitatelier/data-streams/issues/1).

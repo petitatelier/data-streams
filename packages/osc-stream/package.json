@@ -5,10 +5,11 @@
   "author": "Olivier Lange",
   "license": "BSD-3-Clause",
   "main": "osc-stream.js",
+  "module": "osc-stream.js",
   "scripts": {},
   "dependencies": {
-    "osc-js": "2.0.2",
-    "ws": "6.1.4"
+    "osc-js": "2.0.3",
+    "ws": "6.2.0"
   },
   "keywords": [
     "osc",
