@@ -92,12 +92,11 @@ Bridging OSC over Web Socket to/from `ws://0.0.0.0:8080`
 Listening for OSC over UDP on `0.0.0.0:7400`
 Broadcasting OSC over UDP to `192.168.178.29:7500`
 Local host reachable at: [ en0: `192.168.178.47` ]
-
 …
 ```
 
-And if you were using the TouchOSC _remote controller app_, you would
-consequently configure it as following:
+And if you were using the popular [TouchOSC](https://hexler.net/software/touchosc)
+_remote OSC controller app_, you would consequently configure it as following:
 
 <img height="400" alt="TouchOSC configuration · Screencopy"
   src="../../demos/images/touchosc-config.png">

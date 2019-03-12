@@ -6,7 +6,7 @@ A collection of readable and/or writable data streams, to play with in visualiza
 
 ## Status
 
-Work-in-progress / Alpha releases.
+Released / ready to be used.
 
 ## Setup
 
