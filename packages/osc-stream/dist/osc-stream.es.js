@@ -91,4 +91,4 @@ function makeMapperTransformStream( mapperFn) {
   });
 }
 
-export { Default, OSCStream, OSCMessageTextFormatter };
+export { Default, OSCMessageTextFormatter, OSCStream };

@@ -96,5 +96,5 @@ function makeMapperTransformStream( mapperFn) {
 }
 
 exports.Default = Default;
-exports.OSCStream = OSCStream;
 exports.OSCMessageTextFormatter = OSCMessageTextFormatter;
+exports.OSCStream = OSCStream;
