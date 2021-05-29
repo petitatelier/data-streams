@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "osc-js": "2.0.3",
-    "ws": "6.2.0"
+    "ws": "7.4.6"
   },
   "devDependencies": {
     "rollup": "^1.6.0",
