@@ -10,29 +10,35 @@
  *
  * Usage:
  *
- *     $ node cli.js [ -- --auto-ping ]
+ *     $ node cli.js [--auto-ping] [config.json]
  *
  * Configuration:
  *
- * Following NPM environment variables should be defined in the `config`
- * section of the `package.json` using this package as a dependency:
+ * The following settings can be defined in `config.json`:
  *
  *     {
- *       …,
+ *       "udp-server": {
+ *         "host": "0.0.0.0",
+ *         "port": "7400"
+ *       },
+ *       "udp-client": {
+ *         "host": "192.168.3.4",
+ *         "port": "7500"
+ *       },
+ *       "ws-server": {
+ *         "host": "0.0.0.0",
+ *         "port": "8080"
+ *       }
+ *     }
+ *
+ * Alternatively, the config object can be placed in the `config.osc-bridge`
+ * section of `package.json` when using this package as a dependency:
+ *
+ *     {
  *       "config": {
  *         "osc-bridge": {
- *           "udp-server": {
- *             "host": "0.0.0.0",
- *             "port": "7400"
- *           },
- *           "udp-client": {
- *             "host": "192.168.xxx.yyy",
- *             "port": "7500"
- *           },
- *           "ws-server": {
- *             "host": "0.0.0.0",
- *             "port": "8080"
- *           }
+ *            "udp-server": …
+ *            …
  *         }
  *       },
  *       "devDependencies": {
@@ -41,6 +47,9 @@
  *       }
  *       …
  *     }
+ *
+ * All values are optional. Values from `config.json`, if specified, override
+ * corresponding values from `package.json`.
  *
  * Options:
  *
@@ -67,6 +76,7 @@
  *   Upon start, this bridge server will list the IP addresses of
  *   all local network interfaces of its host, to ease setup.
  */
+const fs = require( "fs");
 const OSC = require( "osc-js");
 
 const AUTO_PING_INTERVAL = 5000; // in milliseconds
@@ -95,6 +105,21 @@ const oscBridgeConfig = {
     host: process.env.npm_package_config_osc_bridge_ws_server_host || "localhost",
     // @param {number} Port of WebSocket server
     port: process.env.npm_package_config_osc_bridge_ws_server_port || 8080
+  }
+}
+
+function loadConfig( config) {
+  if( config['udp-server']) {
+    oscBridgeConfig.udpServer.host = config['udp-server'].host || oscBridgeConfig.udpServer.host;
+    oscBridgeConfig.udpServer.port = config['udp-server'].port || oscBridgeConfig.udpServer.port;
+  }
+  if( config['udp-client']) {
+    oscBridgeConfig.udpClient.host = config['udp-client'].host || oscBridgeConfig.udpClient.host;
+    oscBridgeConfig.udpClient.port = config['udp-client'].port || oscBridgeConfig.udpClient.port;
+  }
+  if( config['ws-server']) {
+    oscBridgeConfig.wsServer.host = config['ws-server'].host || oscBridgeConfig.wsServer.host;
+    oscBridgeConfig.wsServer.port = config['ws-server'].port || oscBridgeConfig.wsServer.port;
   }
 }
 
@@ -154,13 +179,21 @@ function autoSendPing( osc, interval) {
 
 // Start the OSC bridge server
 console.log( "OSC Websocket <-> UDP bridge server");
-const osc = start();
 
-// Enable auto pinging the WS if `--auto-ping` argument was given
-const [ , , ...args ] = process.argv;
-if( args.indexOf( "--auto-ping") > -1) {
-  autoSendPing( osc, AUTO_PING_INTERVAL); // interval in milliseconds
+const args = process.argv.slice(2);
+for( let i = 0; i < args.length; i++ ) {
+  // Enable auto pinging the WS if `--auto-ping` argument was given
+  if( args[i] === "--auto-ping") {
+    autoSendPing( osc, AUTO_PING_INTERVAL); // interval in milliseconds
+    continue;
+  }
+
+  console.info( `Loading config from '${args[i]}'`);
+  const config = JSON.parse( fs.readFileSync( args[i]));
+  loadConfig(config);
 }
+
+const osc = start();
 
 // Stop the OSC bridge server on CTRL-C keypress in the terminal
 process.on( "SIGINT", function() {
